@@ -15,9 +15,8 @@ import javax.persistence.*;
 
 public class Gallery implements Serializable {
 
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	   
 	@Id
-	
 	private Integer idGallery;
 	private String address;
 	private static final long serialVersionUID = 1L;
@@ -43,10 +42,6 @@ public class Gallery implements Serializable {
 	}
 
 	public void setAddress(String address) {
-		this.address = address;
-	}
-	public Gallery(String address) {
-		super();
 		this.address = address;
 	}
    
