@@ -23,6 +23,12 @@ public class ComplaintId implements Serializable {
 		this.idReceiver = idReceiver;
 		this.date = new Date();
 	}
+	public ComplaintId(Integer idComplainer, Integer idReceiver,Date date) {
+		super();
+		this.idComplainer = idComplainer;
+		this.idReceiver = idReceiver;
+		this.date =date;
+	}
 
 	public Integer getIdComplainer() {
 		return idComplainer;

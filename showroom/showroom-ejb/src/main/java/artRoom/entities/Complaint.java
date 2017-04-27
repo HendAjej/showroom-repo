@@ -1,6 +1,8 @@
 package artRoom.entities;
 
 import java.io.Serializable;
+import java.util.Date;
+
 import javax.persistence.*;
 
 /**
@@ -15,6 +17,7 @@ public class Complaint implements Serializable {
 	private ComplaintId complaintId;
 	private String subject;
 	private String message;
+	private String state;
 	private static final long serialVersionUID = 1L;
 	
 	@ManyToOne
@@ -35,6 +38,24 @@ public class Complaint implements Serializable {
 		this.complaintId=new ComplaintId(complainer.getIdUser(),receiver.getIdUser());
 		this.subject = subject;
 		this.message = message;
+		this.complainer = complainer;
+		this.receiver = receiver;
+	}
+	
+	
+
+
+	public Complaint(String subject, User complainer, User receiver) {
+		super();
+		this.subject = subject;
+		this.complainer = complainer;
+		this.receiver = receiver;
+	}
+
+
+	public Complaint(Date t, User complainer, User receiver) {
+		super();
+		this.complaintId=new ComplaintId(complainer.getIdUser(),receiver.getIdUser(),t);
 		this.complainer = complainer;
 		this.receiver = receiver;
 	}
@@ -87,6 +108,16 @@ public class Complaint implements Serializable {
 
 	public void setReceiver(User receiver) {
 		this.receiver = receiver;
+	}
+
+
+	public String getState() {
+		return state;
+	}
+
+
+	public void setState(String state) {
+		this.state = state;
 	}
 	
 	
