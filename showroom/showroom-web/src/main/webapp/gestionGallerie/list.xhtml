@@ -13,10 +13,7 @@
 					style="margin-top:20px">
 
 					<p:dataTable value="#{galleryBean.galleries}" var="p" border="1">
-						<p:column style="width:20px">
-							<h:outputText id="dragIcon" styleClass="ui-icon ui-icon-arrow-4" />
-							<p:draggable for="dragIcon" revert="true" helper="clone" />
-						</p:column>
+						
 						<p:column  headerText="ID" sortBy="#{p.idGallery}" filterBy="#{p.idGallery}" footerText="contains" filterMatchMode="contains">
 							<h:outputText value="#{p.idGallery}" />
 						</p:column>

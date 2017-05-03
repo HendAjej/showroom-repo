@@ -1,61 +1,75 @@
-<ui:composition
-		xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:h="http://java.sun.com/jsf/html"> 
-      
-<ui:define name="title">Inbox</ui:define>
-      <h1>Inbox</h1>
-
-<h:form>
-
-  
-	<h:dataTable id="list" value="#{complaintBean.complaints}" var="p" border="1">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
 	
-		<h:column>
-		<f:facet name="header">
-			<h:outputText value="Date" />
-		</f:facet>
-		<h:outputText value="#{p.complaintId.date}" />
-		</h:column>
-		
-		<h:column>
-		<f:facet name="header">
-			<h:outputText value="Sender" />
-		</f:facet>
-		<h:outputText value="#{p.complainer.firstName} #{p.complainer.lastName}" />
-		</h:column> 
-		
-		<h:column>
-		<f:facet name="header">
-			<h:outputText value="Subject" />
-		</f:facet>
-		<h:outputText value="#{p.subject}" />
-		</h:column>
-		
-		<h:column>
-		<f:facet name="header">
-			<h:outputText value="message" />
-		</f:facet>
-		<h:outputText value="#{p.message}" />
-		</h:column>
-		
-		<h:column>
-		<f:facet name="header">
-		<h:outputText value="Select" />
-		</f:facet>
-		<h:commandButton  value="select">
-		<f:setPropertyActionListener value="#{p}" target="#{complaintBean.complaint}"></f:setPropertyActionListener>
-		</h:commandButton>
-		</h:column>
-	</h:dataTable>
-	 
-	 <ui:include src="/gestion.complaint/Detail.xhtml" />
+	
+<h:head></h:head>
+<body>
+	
+	<h:form>
+		<f:view>
+			<center>
+				<p:fieldset id="Inbox" legend="Complaint Inbox"
+					style="margin-top:20px">
 
-		<h:panelGrid columns="1">
-			<h:commandLink action="compose" value="Compose new Complaint" />
-			<h:commandLink action="sent" value="Complaint Sent" />
-		</h:panelGrid>
+					<p:dataTable value="#{complaintBean.complaints}" var="p" border="1">
 
+						<p:column headerText="Date" sortBy="#{p.complaintId.date}"
+							filterBy="#{p.complaintId.date}" footerText="contains"
+							filterMatchMode="contains">
+							<h:outputText value="#{p.complaintId.date}" />
+						</p:column>
+						<p:column headerText="Sender" sortBy="#{p.complainer.firstName}"
+							filterBy="#{p.complainer.firstName}" footerText="contains"
+							filterMatchMode="contains">
+							<h:outputText
+								value="#{p.complainer.firstName}  #{p.complainer.lastName}" />
+						</p:column>
+						<p:column headerText="Email" sortBy="#{p.complainer.email}"
+							filterBy="#{p.complainer.email}" footerText="contains"
+							filterMatchMode="contains">
+							<h:outputText value="#{p.complainer.email}" />
+						</p:column>
+						<p:column headerText="Subject" sortBy="#{p.subject}"
+							filterBy="#{p.subject}" footerText="contains"
+							filterMatchMode="contains">
+							<h:outputText value="#{p.subject}" />
+						</p:column>
+						<p:column headerText="Message" sortBy="#{p.message}"
+							filterBy="#{p.message}" footerText="contains"
+							filterMatchMode="contains">
+							<h:outputText value="#{p.message}" />
+						</p:column>
+						<p:column>
+							<f:facet name="header">
+								<h:outputText value="action" />
+							</f:facet>
+							<h:commandButton value="select">
+								<f:setPropertyActionListener value="#{p}"
+									target="#{complaintBean.complaint}"></f:setPropertyActionListener>
+							</h:commandButton>
+						</p:column>
+					</p:dataTable>
+
+				</p:fieldset>
+			</center>
+			<p:fieldset legend="Complaint Detail" style="margin-top:20px">
+
+				<ui:include src="/gestion.complaint/Detail.xhtml" />
+
+			</p:fieldset>
+
+		
+
+		</f:view>
 	</h:form>
-</ui:composition> 
+
+
+</body>
+
+</html>
+
+

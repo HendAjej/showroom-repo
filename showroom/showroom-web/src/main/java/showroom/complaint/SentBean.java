@@ -10,6 +10,9 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
 import artRoom.entities.Complaint;
+import artRoom.entities.ComplaintId;
+import artRoom.entities.Notification;
+import artRoom.entities.User;
 import showroom.persistence.service.ComplaintServicesLocal;
 
 @ManagedBean
@@ -27,13 +30,26 @@ public class SentBean implements Serializable {
 	
 	@PostConstruct
 	public void listComplaint(){
-		complaints= complaintServicesLocal.findAllYourComplaints(1);
+		complaints= complaintServicesLocal.findAllYourComplaints(3);
 	}
 	public void doDelete(){
 		complaintServicesLocal.deleteComplaint(complaint);
 		complaint=new Complaint();
 		listComplaint();
 		
+	}
+	public void doSend() {
+		//int id=userLogged.getIdUser();
+		ComplaintId cmpID = new ComplaintId(3, 2);
+		complaint.setComplaintId(cmpID);
+		complaintServicesLocal.addComplaint2(complaint);
+		User receiver = complaintServicesLocal.findReceiverById(2);
+		String text = "vous avez reçu une reclamation check your inbox please";
+		Notification notification = new Notification(text, receiver);
+		notification.setSeen(false);
+		//notificationServicesLocal.addNote(notification);
+		complaint = new Complaint();
+		listComplaint();
 	}
 	 
 	public List<Complaint> getComplaints() {

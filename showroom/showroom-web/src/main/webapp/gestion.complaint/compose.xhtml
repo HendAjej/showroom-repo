@@ -3,25 +3,27 @@
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      
       > 
       
+      <p:fieldset legend="Complaint Detail" style="margin-top:20px">
       <ui:define name="title">Compose a complaint</ui:define>
       <h1>Compose Complaint</h1>
       <h:form>
 	 	<h:panelGrid columns="2">
 			<h:outputLabel value="subject" />
-			<h:inputText value="#{complaintBean.complaint.subject}" />
+			<h:inputText value="#{sentBean.complaint.subject}" />
 			<h:outputLabel value="message" />
-			<h:inputText value="#{complaintBean.complaint.message}"/>
+			<h:inputText value="#{sentBean.complaint.message}"/>
 		</h:panelGrid>
 	
 		
 		<h:panelGrid columns="1">
-		<h:commandButton action="#{complaintBean.doSend()}" value="Send" />
-		<h:commandLink action="inbox" value="Inbox" />
-		<h:commandLink action="sent" value="Complaint Sent" />
+		<h:commandButton action="#{sentBean.doSend()}" value="Send" />
+
 	</h:panelGrid>
 	
 	  </h:form>
-
+</p:fieldset>
 </ui:composition>

@@ -15,8 +15,8 @@ public class TestAddComplaint {
 		ComplaintServicesRemote complaintServicesRemote = (ComplaintServicesRemote) context.lookup(
 				"showroom-ear/showroom-ejb/ComplaintServices!showroom.persistence.service.ComplaintServicesRemote");
 				
-		User complainer = complaintServicesRemote.findComplainerById(1);
-		User receiver = complaintServicesRemote.findReceiverById(2);
+		User complainer = complaintServicesRemote.findComplainerById(2);
+		User receiver = complaintServicesRemote.findReceiverById(3);
 		String Subject = "retard livraison";
 		String message = "Bonjour monsieur j'ai été prevenu que je vais recevoir mon tableau...";
 		complaintServicesRemote.addComplaint(complainer, receiver, Subject, message);
@@ -27,7 +27,7 @@ public class TestAddComplaint {
 
 		
 		User complainer9 = complaintServicesRemote.findComplainerById(3);
-		User receiver9 = complaintServicesRemote.findReceiverById(1);
+		User receiver9 = complaintServicesRemote.findReceiverById(2);
 		String Subject9 = "retard livraison";
 		String message9 = "Bonjour monsieur j'ai été prevenu que je vais recevoir mon tableau...";
 		complaintServicesRemote.addComplaint(complainer9, receiver9, Subject9, message9);

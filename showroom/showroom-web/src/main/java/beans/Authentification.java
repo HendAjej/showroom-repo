@@ -2,7 +2,7 @@ package beans;
 
 import java.io.Serializable;
 
-import javax.annotation.PostConstruct;
+
 import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
@@ -19,7 +19,7 @@ import artRoom.entities.GalleryAssistant;
 import artRoom.services.UserServiceRemote;
 import artRoom.services.UserServiceLocal;
 
-@ManagedBean(name = "authentification")
+@ManagedBean
 @SessionScoped
 
 public class Authentification implements Serializable {
@@ -32,10 +32,6 @@ public class Authentification implements Serializable {
 	private UserServiceLocal subscriptionServiceLocal;
 	private Boolean loggedInAsAgent = false;
 	private User user = new User();
-	@PostConstruct
-	public void init() {
-		user = new User();
-	}
 
 	public User getUser() {
 		return user;
