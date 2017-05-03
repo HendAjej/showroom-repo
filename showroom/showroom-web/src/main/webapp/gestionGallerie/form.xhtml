@@ -1,0 +1,45 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:p="http://primefaces.org/ui">
+	<title>Page Admin</title>
+	<p:fieldset id="selectedGallery" legend="selectedGallery" style="margin-top:20px">
+        <p:outputPanel id="dropArea">
+           
+           
+    
+	<h:form rendered="#{galleryBean.visible}">
+		<h:panelGrid columns="2">
+			<h:outputText value="GalleryID" />
+			<h:inputText value="#{galleryBean.gallerie.idGallery}" accesskey="true"  />
+			<h:outputText value="Address" />
+			<h:inputText value="#{galleryBean.gallerie.address}" maxlength="10" />
+			<h:outputText value="Latitude" />
+			<h:inputText value="#{galleryBean.gallerie.latitude}"  />
+			<h:outputText value="Longitude" />
+			<h:inputText value="#{galleryBean.gallerie.longitude}" />
+			<h:outputText value="GalleryName" />
+			<h:inputText value="#{galleryBean.gallerie.nameGallery}" maxlength="10" />
+			<h:outputText value="Number of space" />
+			<h:inputText value="#{galleryBean.gallerie.nbrespace}" />
+			<h:outputText value="StarRating" />
+			<h:inputText value="#{galleryBean.gallerie.starRating}" />
+			<h:outputText value="Surface" />
+			<h:inputText value="#{galleryBean.gallerie.surface}" />
+			<!-- <h:outputText value="AssistantID" />
+			<h:inputText value="#{galleryBean.gallerie.assistant.idUser}" /> -->
+			</h:panelGrid>
+			<h:form rendered="#{galleryBean.visible}">
+			<h:panelGrid columns="4">
+			<h:commandButton actionListener="#{galleryBean.doADDorUpdate()}" value="UPDATE/ADD " />
+			<h:commandButton actionListener="#{galleryBean.doDelete()}" value="DELETE " />	
+			<h:commandButton actionListener="#{galleryBean.doCancel()}" value="CANCEL " />
+			
+		</h:panelGrid>
+</h:form>
+
+	</h:form>
+	    </p:outputPanel>
+    </p:fieldset>
+</ui:composition>

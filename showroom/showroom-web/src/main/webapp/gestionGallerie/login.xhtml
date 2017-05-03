@@ -1,0 +1,34 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://java.sun.com/jsf/html">
+
+	<h:head></h:head>
+
+	<h1>login page</h1>
+	<center>
+	<h:form>
+	
+		<h:panelGrid columns="2">
+			<p:outputLabel for="default" value="Login:" />
+			<p:inputText id="default" required="true"
+				value="#{identity.user.firstName}" />
+			<p:message for="default" /><br />
+			<p:outputLabel for="txt" value="Password" />
+			<p:inputText id="txt" required="true"
+				value="#{identity.user.password}" />
+			<p:message for="txt" display="text" />
+
+			<!-- <p:outputLabel for="login" value="login:" /> 
+				<p:inputText  value="#{identity.user.firstName}" required="true" />
+				<h:message for="login" display="login" /> 
+				<p:outputLabel for="pwd" value="password" />
+				<p:inputSecret value="#{identity.user.password}" required="true"/>
+				<h:message for="pwd" display="login" />-->
+		</h:panelGrid>
+		
+		<h:commandButton action="#{identity.doLogin()}" value="login" />
+	</h:form>
+</center>
+</ui:composition>

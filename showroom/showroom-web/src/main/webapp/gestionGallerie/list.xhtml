@@ -1,0 +1,118 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+<h:head></h:head>
+<body>
+	<h:form>
+		<f:view>
+			<center>
+				<p:fieldset id="availableGall" legend="Available Galleries"
+					style="margin-top:20px">
+
+					<p:dataTable value="#{galleryBean.galleries}" var="p" border="1">
+						<p:column style="width:20px">
+							<h:outputText id="dragIcon" styleClass="ui-icon ui-icon-arrow-4" />
+							<p:draggable for="dragIcon" revert="true" helper="clone" />
+						</p:column>
+						<p:column  headerText="ID" sortBy="#{p.idGallery}" filterBy="#{p.idGallery}" footerText="contains" filterMatchMode="contains">
+							<h:outputText value="#{p.idGallery}" />
+						</p:column>
+						<p:column headerText="Address" sortBy="#{p.address}" filterBy="#{p.address}" footerText="contains" filterMatchMode="contains">
+							<h:outputText value="#{p.address}" />
+						</p:column>
+						<p:column  headerText="Latitude" sortBy="#{p.latitude}" filterBy="#{p.latitude}" footerText="contains" filterMatchMode="contains">
+							<h:outputText value="#{p.latitude}" />
+						</p:column>
+						<p:column headerText="Longitude" sortBy="#{p.longitude}" filterBy="#{p.longitude}" footerText="contains" filterMatchMode="contains">
+							<h:outputText value="#{p.longitude}" />
+						</p:column>
+						<p:column headerText="GalleryName" sortBy="#{p.nameGallery}" filterBy="#{p.nameGallery}" footerText="contains" filterMatchMode="contains">
+							<h:outputText value="#{p.nameGallery}" />
+						</p:column>
+						<p:column headerText="NumberSpace" sortBy="#{p.nbrespace}" filterBy="#{p.nbrespace}" footerText="contains" filterMatchMode="contains">
+							<h:outputText value="#{p.nbrespace}" />
+						</p:column>
+						<p:column headerText="StarRating" sortBy="#{p.starRating}" filterBy="#{p.starRating}" footerText="contains" filterMatchMode="contains">
+							<h:outputText value="#{p.starRating}" />
+						</p:column>
+						<p:column headerText="Surface" sortBy="#{p.surface}" filterBy="#{p.surface}" footerText="contains" filterMatchMode="contains">
+							<h:outputText value="#{p.surface}" />
+						</p:column>
+						<!-- <h:column style="width:20px">
+							<f:facet name="header">
+								<h:outputText value="ID" />
+							</f:facet>
+							<h:outputText value="#{p.idGallery}" style="font-weight:bold" />
+						</h:column>
+						
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Address" />
+							</f:facet>
+							<h:outputText value="#{p.address}" />
+						</h:column>
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Latitude" />
+							</f:facet>
+							<h:outputText value="#{p.latitude}" />
+						</h:column>
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Longitude" />
+							</f:facet>
+							<h:outputText value="#{p.longitude}" />
+						</h:column>
+
+						<p:column headerText="NameGallery" sortBy="#{p.nameGallery}">
+							<f:facet name="header">
+								<h:outputText value="NameGallery" />
+							</f:facet>
+							<h:outputText value="#{p.nameGallery}" />
+						</p:column>
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="SpaceNumber" />
+							</f:facet>
+							<h:outputText value="#{p.nbrespace}" />
+						</h:column>
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="StarRating" />
+							</f:facet>
+							<h:outputText value="#{p.starRating}" />
+						</h:column>
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Surface" />
+							</f:facet>
+							<h:outputText value="#{p.surface}" />
+						</h:column>
+ -->
+						<p:column>
+							<f:facet name="header">
+								<h:outputText value="action" />
+							</f:facet>
+							<h:commandButton value="Choose">
+
+								<f:setPropertyActionListener value="#{p}"
+									target="#{galleryBean.gallerie}"></f:setPropertyActionListener>
+								<f:setPropertyActionListener value="true"
+									target="#{galleryBean.visible}">
+								</f:setPropertyActionListener>
+							</h:commandButton>
+						</p:column>
+					</p:dataTable>
+
+				</p:fieldset>
+			</center>
+<h:commandButton actionListener="#{galleryBean.doNew()}" value="New Gallery" />
+		</f:view>
+	</h:form>
+
+
+</body>
+</html>

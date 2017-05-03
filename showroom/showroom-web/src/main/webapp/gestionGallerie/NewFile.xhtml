@@ -1,0 +1,117 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+	<h:head>
+	<ui:define name="title">manage galleries</ui:define>
+	<ui:define name="content"/>
+</h:head>
+<body>
+	<h:form>
+		<f:view>
+			<center>
+				<p:fieldset  id="availableGall" legend="Available Galleries"
+					style="margin-top:20px">
+
+					<p:dataTable widgetVar="galleryTable"  rows="5" id="tbl" value="#{galleryBean.galleries}"
+						var="p" border="1" paginator="true"
+						paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {Exporters}">
+						<p:column style="width:20px">
+							<h:outputText id="dragIcon" styleClass="ui-icon ui-icon-arrow-4" />
+							<p:draggable for="dragIcon" revert="true" helper="clone" />
+						</p:column>
+						<!-- <p:ajax event="rowEdit" listener="#{galleryBean.onRowEdit()}"  /> -->
+
+
+						<p:column headerText="ID" sortBy="#{p.idGallery}"
+							filterBy="#{p.idGallery}" footerText="contains"
+							filterMatchMode="contains">
+							<h:outputText value="#{p.idGallery}" />
+						</p:column>
+						<p:column headerText="Address" sortBy="#{p.address}"
+							filterBy="#{p.address}" footerText="contains"
+							filterMatchMode="contains">
+							<h:outputText value="#{p.address}" />
+						</p:column>
+						<p:column headerText="Latitude" sortBy="#{p.latitude}"
+							filterBy="#{p.latitude}" footerText="contains"
+							filterMatchMode="contains">
+							
+							
+							
+							<h:outputText value="#{p.latitude}" />
+						</p:column>
+						<p:column headerText="Longitude" sortBy="#{p.longitude}"
+							filterBy="#{p.longitude}" footerText="contains"
+							filterMatchMode="contains">
+							<h:outputText value="#{p.longitude}" />
+						</p:column>
+						<p:column headerText="GalleryName" sortBy="#{p.nameGallery}"
+							filterBy="#{p.nameGallery}" footerText="contains"
+							filterMatchMode="contains">
+							<h:outputText value="#{p.nameGallery}" />
+						</p:column>
+						<p:column headerText="NumberSpace" sortBy="#{p.nbrespace}"
+							filterBy="#{p.nbrespace}" footerText="contains"
+							filterMatchMode="contains">
+							<h:outputText value="#{p.nbrespace}" />
+						</p:column>
+						<p:column headerText="StarRating" sortBy="#{p.starRating}"
+							filterBy="#{p.starRating}" footerText="contains"
+							filterMatchMode="contains">
+							<h:outputText value="#{p.starRating}" />
+						</p:column>
+						<p:column headerText="Surface" sortBy="#{p.surface}"
+							filterBy="#{p.surface}" footerText="contains"
+							filterMatchMode="contains">
+							<h:outputText value="#{p.surface}" />
+						</p:column>
+
+						
+						<p:column>
+							<f:facet name="header">
+								<h:outputText value="action" />
+							</f:facet>
+							<h:commandButton value="Choose">
+								<p:rowEditor></p:rowEditor>
+								<f:setPropertyActionListener value="#{p}"
+									target="#{galleryBean.gallerie}"></f:setPropertyActionListener>
+								<f:setPropertyActionListener value="true"
+									target="#{galleryBean.visible}">
+								</f:setPropertyActionListener>
+							</h:commandButton>
+						</p:column>
+
+					</p:dataTable>
+
+				</p:fieldset>
+			</center>
+			<f:facet name="{Exporters}">
+				<h3>Export Page Data Only</h3>
+				<h:commandLink>
+					<p:commandButton value="XLS">
+
+						<p:dataExporter type="xls" target="tbl" fileName="gallery"
+							pageOnly="true" />
+					</p:commandButton>
+				</h:commandLink>
+				<h:commandLink>
+					<p:commandButton value="PDF">
+
+						<p:dataExporter type="pdf" target="tbl" fileName="galleryPDF" />
+					</p:commandButton>
+				</h:commandLink>
+
+			</f:facet>
+			<h:commandButton actionListener="#{galleryBean.doNew()}"
+				value="New Gallery" />
+
+
+		</f:view>
+	</h:form>
+
+
+</body>
+</html>
