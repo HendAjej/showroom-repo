@@ -60,10 +60,10 @@ public class ComplaintUtilities {
 		complainer3.setPassword("159");
 		complainer3.setRole("Admin");
 		
-		entityManager.persist(admin);
+		/*entityManager.persist(admin);
 		entityManager.persist(complainer);
 		entityManager.persist(receiver);
-		entityManager.persist(complainer3);
+		entityManager.persist(complainer3);*/
 	}
 
 }

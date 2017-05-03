@@ -9,7 +9,7 @@ import javax.ejb.EJB;
 import javax.enterprise.context.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
 import javax.faces.context.FacesContext;
-import org.apache.commons.io.IOUtils;
+
 import artRoom.entities.User;
 import artRoom.entities.Admin;
 import artRoom.entities.Artist;
@@ -35,11 +35,7 @@ public class HelperBean implements Serializable {
 		InputStream is = FacesContext.getCurrentInstance().getExternalContext()
 				.getResourceAsStream("/resources/img/PasDePhotoDeProfil.png");
 
-		try {
-			defaultPicture = IOUtils.toByteArray(is);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+		
 	}
 
 	public User findUserByName(String name) {
