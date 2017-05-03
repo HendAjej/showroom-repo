@@ -1,0 +1,60 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+	<ui:define name=""></ui:define>
+	<ui:define name=""></ui:define>
+
+	<h:body>
+		<h:form>
+			<h:panelGrid columns="4">
+				<h:column>
+					<h:outputText value="First Name" />
+				</h:column>
+				<h:column>
+					<h:inputText value="#{userBean.firstName}" />
+				</h:column>
+				<h:column>
+					<h:outputText value="Last Name" />
+				</h:column>
+				<h:column>
+					<h:inputText value="#{userBean.lastName}" />
+				</h:column>
+				<h:column>
+					<h:outputText value="Email" />
+				</h:column>
+				<h:column>
+					<h:inputText value="#{userBean.email}" />
+				</h:column>
+				<h:column>
+					<h:outputText value="Role" />
+				</h:column>
+				<h:column>
+					<h:inputText value="#{userBean.role}" />
+				</h:column>
+				<h:column>
+					<h:outputText value="Adress" />
+				</h:column>
+				<h:column>
+					<h:inputText value="#{userBean.address}" />
+				</h:column>
+				
+				<h:column>
+					<h:outputText value="Banned" />
+				</h:column>
+				<h:column>
+					<h:inputText value="#{userBean.banned}" />
+				</h:column>
+				<h:column>
+					<h:outputText value="telephone" />
+				</h:column>
+				<h:column>
+					<h:inputText value="#{userBean.phoneNumber}" />
+				</h:column>
+				<h:commandButton id="update" action="#{userBean.editUsers()}"
+								value="update" />
+			</h:panelGrid>
+		</h:form>
+	</h:body>
+</ui:composition>

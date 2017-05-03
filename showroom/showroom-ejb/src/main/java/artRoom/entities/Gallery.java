@@ -6,6 +6,7 @@ import java.lang.String;
 import java.util.List;
 
 import javax.persistence.*;
+import javax.websocket.OnMessage;
 
 /**
  * Entity implementation class for Entity: Gallery
@@ -27,6 +28,11 @@ public class Gallery implements Serializable {
 	
 	@OneToMany(mappedBy="galleryEvent")
 	private List<Event> events;
+	
+	@ManyToMany
+	private List<Artwork> artworks;
+	
+	
 
 	public Gallery() {
 		super();
@@ -49,5 +55,16 @@ public class Gallery implements Serializable {
 		super();
 		this.address = address;
 	}
+	
+	@OneToMany(mappedBy="galleryart")
+	public List<Artwork> getArtworks() {
+		return artworks;
+	}
+	public void setArtworks(List<Artwork> artworks) {
+		this.artworks = artworks;
+	}
+	
+	
+	
    
 }

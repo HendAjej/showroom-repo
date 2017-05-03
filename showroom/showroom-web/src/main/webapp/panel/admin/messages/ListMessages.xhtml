@@ -1,0 +1,72 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:jsf="http://xmlns.jcp.org/jsf"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:p="http://primefaces.org/ui" template="/template/template.xhtml">
+
+
+	<ui:define name="title">
+		<h:outputText value="My messages" />
+	</ui:define>
+	<ui:define name="content">
+		<div >
+        <div class="content grid_8">
+            <div class="single-page">
+							<p:panel>
+								<h:form id="form">
+									<p:growl id="msgs" showDetail="true">
+
+
+
+										<p:dataTable var="m" value="#{MessageBean.messages}"
+											selectionMode="single"
+											selection="#{MessageBean.selectedmessage}" paginator="true"
+											paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+											rowsPerPageTemplate="5,10,15" rowKey="#{m.id}">
+
+											<!-- abda badel min houni  -->
+											<p:column headerText="sender">
+												<h:outputText value="#{m.name_sender}" />
+											</p:column>
+
+											<p:column headerText="object">
+												<h:outputText value="#{m.object_message}" />
+											</p:column>
+											<p:column headerText="text">
+												<h:outputText value="#{m.text_message}" />
+											</p:column>
+											<p:column headerText="date send ">
+												<h:outputText value="#{m.date_send}" />
+											</p:column>
+											<p:column headerText="Delete ">
+												<h:commandButton action="#{MessageBean.RemoveMessage()}"
+													value="Delete" class="btn btn-white btn-submit-comment"
+													icon="ui-icon-check">
+													<f:setPropertyActionListener value="#{m}"
+														target="#{MessageBean.selectedmessage}" />
+												</h:commandButton>
+											</p:column>
+										</p:dataTable>
+										<br></br>
+										<p:commandButton action="#{MessageBean.ShowAdd()}"
+											value="Send" class="btn btn-white btn-submit-comment"
+											icon="ui-icon-check" />
+
+										<!-- e9ef houni  -->
+									</p:growl>
+								</h:form>
+							</p:panel>
+						</div>
+					</div>
+					<!--end: .box-list-comment -->
+				</div>
+			
+			<!--end: .content -->
+			<div class="clear"></div>
+		
+		<!--end: .content -->
+
+	</ui:define>
+</ui:composition>

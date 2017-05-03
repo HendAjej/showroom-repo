@@ -1,0 +1,21 @@
+<ui:composition 
+	  xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"> 
+
+<ui:define name="titleName">form</ui:define>
+<h:form>
+	 <h:panelGrid columns="2">
+		<h:outputText value="subject" />
+		<h:inputText value="#{complaintBean.complaint.subject}" />
+		<h:outputText value="message" />
+		<h:inputText value="#{complaintBean.complaint.message}" />
+	</h:panelGrid>
+	<h:panelGrid columns="3">
+		<h:commandButton actionListener="#{complaintBean.doSend()}" value="Send" />
+		<h:commandButton actionListener="#{complaintBean.doDelete()}" value="Delete" />
+		<h:commandButton action="#" value="Cancel" />
+	</h:panelGrid>
+</h:form>
+ </ui:composition> 

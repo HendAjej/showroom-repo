@@ -18,18 +18,24 @@ public class TestDeleteComplaint {
 		ComplaintServicesRemote complaintServicesRemote = (ComplaintServicesRemote) context.lookup(
 				"showroom-ear/showroom-ejb/ComplaintServices!showroom.persistence.service.ComplaintServicesRemote");
 
-		//Complaint complaint = complaintServicesRemote. findComplaintById(1,2);
+		
 
-		//Date t = new Date(2017, 03, 13,16,32,14);
+		// Date t = new Date(2017, 04, 27,17,35,34);
 		 DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 	        
 	        Date d=null;
 			try {
-				d = df.parse("2017-03-13 17:18:30.0");
+				d = df.parse("2017-04-27 17:35:34.0");
 			} catch (ParseException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-		complaintServicesRemote.deleteComplaintById(1,2,d);
+			System.out.println(d);
+
+Complaint complaint=complaintServicesRemote.findComplaintById(1,2,d );
+System.out.println(complaint);
+			
+			complaintServicesRemote.deleteComplaint(complaint);
+		
 	}
 }

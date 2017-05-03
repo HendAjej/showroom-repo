@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:jsf="http://xmlns.jcp.org/jsf"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:p="http://primefaces.org/ui" template="/templateUser/templateuser.xhtml">
+
+
+
+	<ui:define name="title">
+		<h:outputText value="paymant" />
+	</ui:define>
+	<ui:define name="content">
+       
+		<div class="layout-2cols">
+			<div class="content grid_8">
+		<h2 class="common-title">Purchase this art.</h2>
+		<h:form id="contact-form" class="clearfix"
+   		enctype="multipart/form-data">			
+			<div class="form form-post-comment">
+			<div class="left-input">
+			<label for="txt_name_contact">
+			Amount committed													 
+			<p:inputText id="amount" value=""
+			class="txt fill-width txt-name"	>				
+			</p:inputText>
+			</label>
+			<a href="#" data-paypal-button="true">
+            <img src="//www.paypalobjects.com/en_US/i/btn/btn_paynow_LG.gif" alt="Pay Now" />
+             </a>
+			</div></div>
+			</h:form>
+        </div><!--end: .sidebar -->
+        <div class="clear"></div>
+    </div>
+	
+		
+		<!--end: .content -->
+       			
+	</ui:define>
+</ui:composition>

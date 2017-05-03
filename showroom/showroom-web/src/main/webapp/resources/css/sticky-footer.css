@@ -1,0 +1,17 @@
+html {
+	position: relative;
+	min-height: 100%;
+}
+
+body {
+	margin-bottom: 80px;
+}
+
+.footer {
+	z-index: 999; 
+	position : absolute;
+	bottom: 0;
+	width: 100%;
+	height: 50px;
+	position: absolute;
+}

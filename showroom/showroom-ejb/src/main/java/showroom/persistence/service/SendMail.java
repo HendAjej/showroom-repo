@@ -2,6 +2,8 @@ package showroom.persistence.service;
 
 import java.util.Properties;
 
+import javax.ejb.Stateless;
+
 import javax.mail.Message;
 import javax.mail.MessagingException;
 import javax.mail.PasswordAuthentication;
@@ -10,8 +12,10 @@ import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
-public class SendMail {
+@Stateless
+public class SendMail implements SendMailLocal{
 	
+	@Override
 	public void envoyer(String username,String password,String subjectS, String messageS){
 		// Etape 1 : Création de la session
 		Properties props = new Properties();

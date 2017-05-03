@@ -1,0 +1,132 @@
+
+<!DOCTYPE html>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:jsf="http://xmlns.jcp.org/jsf"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:p="http://primefaces.org/ui" template="/template/templateuser.xhtml">
+
+
+
+	<ui:define name="title">
+		<h:outputText value="Descover projects" />
+	</ui:define>
+    <ui:define name="content">
+   <!--content -->
+    <div >
+        <div class="content grid_8">
+            <div class="single-page">
+     <p:panel>
+       <h:form id="form">
+        <p:growl id="msgs" showDetail="true"> 
+           <p:dataTable var="project" value="#{projectsBean.doListProject()}" sortMode="multiple" rows="10"
+                       paginator="true"
+                         paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                         rowsPerPageTemplate="5,10,15"
+                         selectionMode="single"
+                         rowKey="#{project.id}"
+                         selection="#{projectBean.selectedproject}">
+                         
+                      <p:ajax event="rowSelect" listener="#{projectBean.onRowSelect}" update=":form:msgs"></p:ajax>
+                      <p:ajax event="rowUnselect" listener="#{projectBean.onRowUnselect}" update=":form:msgs"></p:ajax>
+
+
+        <f:facet name="header">
+            List of projects
+        </f:facet>       
+        <p:column headerText="Title" sortBy="title" filterBy="#{project.title}">
+            <h:outputText value="#{project.title}" />
+        </p:column>
+        
+        <p:column headerText="Date" sortBy="#{project.date_publish}" filterBy="#{project.date_publish}">
+            <h:outputText value="#{project.date_publish}" />
+        </p:column>
+        
+        <p:column headerText="Duration" sortBy="duration" filterBy="#{project.duration}">
+            <h:outputText value="#{project.duration}" />
+        </p:column>
+        
+        <p:column headerText="Name" sortBy="name" filterBy="#{project.name}">
+            <h:outputText value="#{project.name}" />
+        </p:column>
+        
+        
+        
+        <p:column headerText="Target Funds" sortBy="#{project.turget_funding}" filterBy="#{project.turget_funding}">
+            <h:outputText value="#{project.turget_funding}" />
+        </p:column>
+        
+        <p:column headerText="Details">
+        
+        <h:commandLink  value="Details" /> 
+        
+        </p:column>
+        
+        
+ 
+        
+    </p:dataTable>
+    
+     
+     <p:dataGrid var="proj" value="#{projectsBean.doListProject()}" columns="3" layout="grid"
+        rows="12" paginator="true" id="projs"
+        paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+        rowsPerPageTemplate="6,12,16">
+ 
+        <f:facet name="header">
+            Grid of projects
+        </f:facet>
+ 
+        <p:panel header="#{proj.title}" style="text-align:center">
+            <h:panelGrid columns="1" style="width:100%">
+                
+                
+                <h:outputText value="#{proj.name}" />
+ 
+                <p:commandLink action="#{projectBean.dorenderDetail()}">              
+                    <h:outputText styleClass="ui-icon ui-icon-search" style="margin:0 auto;" />
+                    <f:setPropertyActionListener value="#{proj}" target="#{projectBean.selectedproject}" />
+                </p:commandLink>
+            </h:panelGrid>
+        </p:panel>
+ 
+    </p:dataGrid>
+ 
+   <!-- <p:dialog header="Car Info" widgetVar="projectDialog" modal="true" showEffect="fade" hideEffect="fade" resizable="false">
+        <p:outputPanel id="projectDetail" style="text-align:center;">
+            <p:panelGrid  columns="2" rendered="#{not empty projectBean.selectedproject}" columnClasses="label,value">
+                <f:facet name="header">
+                    <p:graphicImage name="#{projectBean.picture_name}.jpg"/> 
+                </f:facet>
+ 
+                <h:outputText value="Creator :" />
+                <h:outputText value="#{projectBean.selectedproject.creator.firstname}" />
+                 
+                  <h:outputText value="Title :" />
+                <h:outputText value="#{projectBean.selectedproject.title}" />
+                
+                 <h:outputText value="Duration :" />
+                <h:outputText value="#{projectBean.selectedproject.duration}" />
+                
+                 <h:outputText value="Date :" />
+                <h:outputText value="#{projectBean.selectedproject.date_publish}" />
+                
+                 <h:outputText value="Presentation :" />
+                <h:outputText value="#{projectBean.selectedproject.short_presentation}" />            
+                 <h:outputText value="Target funds:" />
+                <h:outputText value="#{projectBean.selectedproject.turget_funding}" />                                              
+            </p:panelGrid>
+        </p:outputPanel>
+    </p:dialog>   -->  
+   </p:growl>
+   </h:form>
+   </p:panel> 
+       </div>
+                </div>
+            </div>
+        
+        <div class="clear"></div>
+	</ui:define>
+</ui:composition>

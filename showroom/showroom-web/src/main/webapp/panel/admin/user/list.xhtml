@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:jsf="http://xmlns.jcp.org/jsf"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="/template/template.xhtml">
+	<!-- # Message -->
+	<ui:define name="message">
+		<div>
+			<h:messages id="msg"
+				style="list-style-type: none;margin-left: 0px;padding: 0px;"
+				errorClass="alert alert-danger alert-dismissible"
+				infoClass="alert alert-success alert-dismissible" />
+		</div>
+	</ui:define>
+
+	<!-- # Titre -->
+	<ui:define name="title">
+		<i class="fa fa-percent"></i> Users List</ui:define>
+
+	<!-- Contenu de la recherche -->
+	<ui:define name="filters">
+		<div class="col-md-9">
+			<div class="form-group">
+				<h:outputLabel value="Search: " for="_searchvalue" />
+				<div class=" form-inline">
+					<div class="input-group">
+						<h:inputText id="_searchvalue"
+							value="#{userBean.search_userValue}" class="form-control">
+							<f:ajax listener="#{userBean.loadUsers()}" execute="_searchvalue"
+								event="keyup" render="form_list:mytable msg"></f:ajax>
+						</h:inputText>
+						<div class="input-group-addon">
+							<i class="fa fa-search"></i>
+						</div>
+					</div>
+					<h:selectOneMenu class="form-control" id="search_filter"
+						valueChangeListener="#{userBean.searchChanged}"
+						style="margin-left:3px;">
+						<f:selectItems value="#{userBean.searchValues}" />
+						<f:ajax listener="#{userBean.loadUsers()}" execute="search_filter"
+							render="form_list:mytable msg"></f:ajax>
+					</h:selectOneMenu>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-3">
+			<div class="form-group">
+				<h:outputLabel value="Sort By: " for="_sort" />
+				<h:selectOneMenu class="form-control" id="_sort"
+					valueChangeListener="#{userBean.sortChanged}">
+					<f:selectItems value="#{userBean.sortValues}" />
+					<f:ajax listener="#{userBean.loadUsers()}" execute="_sort"
+						render="form_list:mytable msg"></f:ajax>
+				</h:selectOneMenu>
+			</div>
+		</div>
+	</ui:define>
+
+	<!-- Contenu des filters 
+	<ui:define name="filters">
+		<div class="col-md-6">
+			<div class="col-xs-6"></div>
+			<div class="col-xs-6"></div>
+		</div>
+	</ui:define>-->
+
+	<!-- # Contenu -->
+	<ui:define name="content">
+		<h:dataTable id="mytable" styleClass="table table-hover"
+			value="#{userBean.users}" var="user">
+			<h:column>
+				<f:facet name="header">Role</f:facet>#{userBean.typeUser(user)}</h:column>
+			<h:column>
+				<f:facet name="header">User Name</f:facet>#{user.firstName}</h:column>
+			<h:column>
+				<f:facet name="header">Last Name</f:facet>#{user.lastName}</h:column>
+			<h:column>
+				<f:facet name="header">Banned</f:facet>#{userBean.bannedUser(user)}</h:column>
+			
+            <h:column>
+				<f:facet name="header">Activated</f:facet>#{userBean.approveUser(user)}</h:column>
+			<!-- # User Info -->
+			<h:column>
+				<f:facet name="header">Profile</f:facet>
+				<h:commandLink action="#{userBean.showInfo(user)}"
+					styleClass="btn btn-sm btn-default">
+					<i class="fa fa-eye"></i>
+				</h:commandLink>
+			</h:column>
+			<!-- 
+			 # Ban User -->
+			<h:column>
+				<f:facet name="header">un/Ban</f:facet>
+				<h:commandLink action="#{userBean.banUser(user)}"
+					styleClass="btn btn-sm btn-default">
+					<i class="fa fa-unlock-alt "></i>
+					<f:ajax render="form_list:mytable msg"></f:ajax>
+				</h:commandLink>
+			</h:column>
+			<h:column>
+				<f:facet name="header">Activate</f:facet>
+				<h:commandLink action="#{userBean.ApproveUser(user)}"
+					styleClass="btn btn-sm btn-default">
+					<i class="fa fa-unlock-alt "></i>
+					<f:ajax render="form_list:mytable msg"></f:ajax>
+				</h:commandLink>
+			</h:column>
+			<!-- # Modification -->
+			<h:column>
+				<f:facet name="header">Edit</f:facet>
+				<h:commandLink action="#{userBean.showEdit(user)}"
+					styleClass="btn btn-sm btn-default">
+					<i class="fa fa-pencil"></i>
+				<f:ajax render="form_list:mytable msg"></f:ajax>
+					
+				</h:commandLink>
+			</h:column>
+			<h:column>
+				<f:facet name="header">Delete</f:facet>
+				<h:commandLink action="#{userBean.deleteUser(user)}"
+					styleClass="btn btn-sm btn-default">
+                   <i class="fa fa-trash"></i>				
+                   <f:ajax render="form_list:mytable msg"></f:ajax>
+					
+				</h:commandLink>
+			</h:column>
+			
+			
+
+		</h:dataTable>
+	</ui:define>
+
+</ui:composition>
+</html>

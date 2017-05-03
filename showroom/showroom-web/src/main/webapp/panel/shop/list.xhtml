@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:jsf="http://xmlns.jcp.org/jsf"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="/template/template.xhtml">
+	<!-- # Message -->
+	<ui:define name="message">
+		<div>
+			<h:messages id="msg"
+				style="list-style-type: none;margin-left: 0px;padding: 0px;"
+				errorClass="alert alert-danger alert-dismissible"
+				infoClass="alert alert-success alert-dismissible" />
+		</div>
+	</ui:define>
+
+	<!-- # Titre -->
+	<ui:define name="title">
+		<i class="fa fa-sitemap"></i> Category List</ui:define>
+
+	<!-- Contenu de la recherche -->
+	<ui:define name="search">
+		<h:outputLabel value="Category name: " for="_category_name" />
+		<div class="input-group">
+			<h:inputText id="_category_name"
+				value="#{categoryBean.search_categoryname}" class="form-control">
+  				<f:ajax listener="#{categoryBean.loadCategories()}"
+					execute="_category_name" event="keyup"
+					render="form_list:mytable msg"></f:ajax>
+			</h:inputText>
+			<div class="input-group-addon">
+				<i class="fa fa-search"></i>
+			</div>
+		</div>
+	</ui:define>
+
+
+
+	<!-- # Contenu -->
+	<ui:define name="content">
+		<h:dataTable id="mytable" styleClass="table table-hover"
+			value="#{categoryBean.categories}" var="category">
+			<h:column>
+				<f:facet name="header"> Name </f:facet>    				
+		            #{category.name}
+         	</h:column>
+
+			<h:column>
+				<f:facet name="header">Number of shops</f:facet>    				
+		            #{category.shops.size()}
+         	</h:column>
+         		<!-- # Suppression -->
+			<h:column>
+				<f:facet name="header">Delete</f:facet>
+				<h:commandLink action="#{categoryBean.deleteCategory(category)}"
+					styleClass="btn btn-sm btn-default">
+					<i class="fa fa-trash"></i>
+					<f:ajax render="form_list:mytable msg"></f:ajax>
+				</h:commandLink>
+			</h:column>
+         	
+	<!-- # Modification -->
+			<h:column>
+				<f:facet name="header">Edit</f:facet>
+				<h:commandLink action="#{categoryBean.showEdit(category)}"
+					styleClass="btn btn-sm btn-default">
+					<i class="fa fa-pencil"></i>
+				</h:commandLink>
+			</h:column>
+
+		</h:dataTable>
+	</ui:define>
+	
+		<!-- # Bouttons -->
+	<ui:define name="buttons">
+		<h:commandLink class="btn btn-primary" role="button"
+			action="#{categoryBean.showAdd()}">
+			<i class="fa fa-plus"></i> New
+				</h:commandLink>
+	</ui:define>
+	
+
+</ui:composition>
+</html>

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:jsf="http://xmlns.jcp.org/jsf"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:p="http://primefaces.org/ui" 
+	template="/template/templateuser.xhtml">
+
+
+
+	<ui:define name="title">
+		<h:outputText value="Edit account" />
+	</ui:define>
+	<ui:define name="content">
+       
+		<div class="layout-2cols">
+			<div class="content grid_8">
+				<div class="single-page">
+					<div class="wrapper-box box-post-comment">
+							<h2 class="common-title">Edit account</h2>
+						<div class="box-white">
+							<h:form id="contact-form" class="clearfix"
+								enctype="multipart/form-data">
+								
+								<div class="form form-post-comment">
+									<div class="left-input">
+										 <label for="txt_name_contact"> First name
+										<p:inputText id="first" value="#{userBean.firstName}"
+												class="txt fill-width txt-name"	>																					
+											</p:inputText> <h:message for="first" style="color:red" /> 
+										</label>
+										 <label for="txt_name_contact"> Last name
+										<p:inputText id="last" value="#{userBean.lastName}"
+												class="txt fill-width txt-name"	>																					
+											</p:inputText> <h:message for="last" style="color:red" /> 
+										</label>
+										 <label for="txt_name_contact"> Email
+										<p:inputText id="email" value="#{userBean.email}"
+												class="txt fill-width txt-name"	>																					
+											</p:inputText> <h:message for="email" style="color:red" /> 
+										</label>								 										
+									</div>
+                                   
+									<div class="clear"></div>
+									<p class="rs ta-r clearfix">
+										<span id="response"></span>
+										<p:commandButton action="#{userBean.DoUpdateProfile()}"
+									value="Send" class="btn btn-white btn-submit-comment" icon="ui-icon-check" />
+									</p>
+								</div>
+							</h:form>
+						                </div>
+						                </div>
+                </div><!--end: .box-list-comment -->
+            </div>
+        </div><!--end: .content -->
+        <div class="sidebar grid_4">
+            <div class="box-gray">
+                <p class="rs description pb20">
+               Edit your account</p>
+                       
+            </div>
+<!--             <img src="/edituser.png"/> -->
+            <h:graphicImage alt="logo" library="img" name="edituser.png" />
+        </div><!--end: .sidebar -->
+        <div class="clear"></div>
+    
+								
+		<!--end: .content -->
+       			
+	</ui:define>
+</ui:composition>

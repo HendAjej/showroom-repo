@@ -5,6 +5,7 @@ import javax.naming.InitialContext;
 import javax.naming.NamingException;
 
 import showroom.persistence.service.*;
+import artRoom.entities.Complaint;
 import artRoom.entities.User;
 
 public class TestAddComplaint {
@@ -19,6 +20,9 @@ public class TestAddComplaint {
 		String Subject = "retard livraison";
 		String message = "Bonjour monsieur j'ai été prevenu que je vais recevoir mon tableau...";
 		complaintServicesRemote.addComplaint(complainer, receiver, Subject, message);
+		
+		Complaint com= new Complaint( Subject, message,complainer, receiver);
+		//complaintServicesRemote.addComplaint2(com);
 		
 
 		

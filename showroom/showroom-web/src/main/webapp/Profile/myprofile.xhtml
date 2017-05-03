@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:jsf="http://xmlns.jcp.org/jsf"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:p="http://primefaces.org/ui" 
+	template="/template/templateuser.xhtml">
+
+
+
+	<ui:define name="title">
+		<h:outputText value="Account" />
+	</ui:define>
+	<ui:define name="content">
+      <div class="layout-2cols">
+        <div class="content grid_8">
+            <div class="single-page">
+                <h2 class="rs single-title">My profile</h2>
+                <div class="box-single-content">
+                    <div class="editor-content">
+                   <div class="box-white">
+							<h:form id="contact-form" class="clearfix"
+								enctype="multipart/form-data">		
+                        <ul style="list-style: decimal">
+                         <!-- <p:graphicImage
+							id="users_image" value="#{usersImageBean.image}" cache="false"
+							width="140" height="140"></p:graphicImage>
+							 -->
+							<li>
+							<h:form>
+							<p:commandLink action="/listusers" value="My artworks">
+							</p:commandLink>
+							</h:form>
+							</li>
+							<li>
+							<h:form>
+							<p:commandLink action="/projects/my_contribuations" value="My purchases">
+							</p:commandLink>
+							</h:form>
+							</li>
+							
+							<li><a target="_blank" href="search-results.html">My account</a></li>
+								<!-- <li>
+							<h:form>
+							<p:commandLink action="/arts/myarts" value="My artworks">
+							</p:commandLink>
+							</h:form>
+							</li> -->
+							<li>
+							<h:form>
+							<p:commandLink action="#{UserBean.doRenderUpdate()}" value="Edit my account">
+							</p:commandLink>
+							</h:form>
+							</li>
+							<!-- <li>
+							<h:form>
+							<p:commandLink action="#{claimsBean.dorenderlistclaims()}" value="My claims">
+							</p:commandLink>
+							</h:form>
+							</li>													
+							<h:form>
+					    	<li><p:commandLink action="#{MessageBean.dorenderlistMessage()}" value="My messages"></p:commandLink></li></h:form>					 -->
+						</ul>
+						</h:form>
+						</div>
+                       
+                    </div>
+                </div>
+            </div>
+        </div><!--end: .content -->
+        <div class="clear"></div>
+    </div>
+       			
+	</ui:define>
+</ui:composition>

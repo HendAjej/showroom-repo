@@ -1,0 +1,203 @@
+<!-- <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">  -->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	   xmlns:f="http://xmlns.jcp.org/jsf/core"
+	   xmlns:h="http://xmlns.jcp.org/jsf/html"
+	   xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	   xmlns:jsf="http://xmlns.jcp.org/jsf"
+	   xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+	   xmlns:p="http://primefaces.org/ui"
+	   xmlns:c="http://java.sun.com/jsp/jstl/core">
+	   
+
+
+<h:head>
+    <ui:include src="/template/metadatauser.xhtml"/>
+    <title><ui:insert name="title"></ui:insert></title>
+
+</h:head>
+
+<body>
+<div id="wrapper">
+   <header id="header">
+      <div class="wrap-top-menu">
+            <div class="container_12 clearfix">
+                <div class="grid_12">
+                    <nav class="top-menu">
+                        <ul id="main-menu" class="nav nav-horizontal clearfix">
+                          <li class="active">
+                            <h:form>                                                    
+                             <p:commandLink value="Home" action="#{profileBean.dorenderHome()}"
+                              style="color:white;">
+                             </p:commandLink>                          
+                             </h:form></li>                                                                    
+                            <li class="active">  
+                             <h:form>
+                             <p:commandLink rendered="#{authentification.user.email!=null}" value="My profile" action="#{profileBean.dorenderMyProfle()}"
+                              style="color:white;">
+                             </p:commandLink>
+                             </h:form></li>                                                                                          
+                             <li class="active">  
+                             <h:form>                                                   
+                             <p:commandLink value="Contact" action="#{profileBean.doContact()}"
+                              style="color:white;">
+                             </p:commandLink>
+                             
+                             </h:form></li> 
+                             <li class="active">  
+                             <h:form>
+                             <p:commandLink rendered="#{authentification.user.email!=null}" value="Logout" action="#{profileBean.dorenderLogOut()}"
+                              style="color:white;">
+                             </p:commandLink>
+                             
+                             </h:form></li> 
+                        </ul>
+                        <a id="btn-toogle-menu" class="btn-toogle-menu" href="#alternate-menu">
+                            <span class="line-bar"></span>
+                            <span class="line-bar"></span>
+                            <span class="line-bar"></span>
+                        </a>
+                        <div id="right-menu">
+                            <ul class="alternate-menu">
+                                <li><a href="index.html">Home</a></li>
+                                <li><a href="/panel/Profile/artistslist.html">Artists</a></li>
+                                <li><a href="/panel/Profile/artslist.html">Artworks</a></li>
+                                <li><a href="Gallerieslist.html">Galleries</a></li>
+                                <li><a href="auctionslist.html">Auctions</a></li>
+                                <li><a href="reclamations.html">Reclamations</a></li>
+                                <li><a href="contact.html">Contact us</a></li>
+                            </ul>
+                        </div>
+                    </nav>
+                  
+                    <i id="sys_btn_toggle_search" class="icon iBtnRed make-right"></i>
+                </div>
+            </div>
+        </div><!-- end: .wrap-top-menu -->
+        <div class="container_12 clearfix">
+            <div class="grid_12 header-content">
+                <div id="sys_header_right" class="header-right">
+                    <div class="account-panel" >
+                 <p:commandLink rendered="#{authentification.user.email!=null}" value="login" action="#{profileBean.dorenderLogOut()}"
+                              style="color:white;">
+                             </p:commandLink>    
+                    
+                    
+                        <!-- <a href="/showroom-web/login.jsf"class="btn btn-red sys_show_popup_login">Register</a>
+                        <a href="/showroom-web/signin2.jsf" class="btn btn-black sys_show_popup_login">Login</a> -->
+                    </div>
+                    <div class=".login-user-name">
+                      <h:outputText value=" welcome #{authentification.user.firstName}" class="login-user-name" /> 
+                    <img src="../resources/user/images/profile.png"  class="profile" style="width : 55px; height : 44px;"/>  
+                    </div>
+                    
+                    </div>
+                    
+                </div>
+                <div class="header-left">
+                    <h1 id="logo">
+                        <a href="index.html"><img src="../resources/user/images/Capture.PNG" alt="$SITE_NAME"/></a>
+                    </h1>
+                    <div class="main-nav clearfix">
+                        <div class="nav-item">
+                         <h:form>
+                        <p:commandLink class="nav-title" value="Discover" action="#{projectBean.dorenderListprojects()}">                          
+                            </p:commandLink>
+                            </h:form>                         
+                            <p class="rs nav-description">Artists You're Following !</p>
+                        </div>
+                        <span class="sep"></span>
+                        <div class="nav-item">
+                        <h:form>
+                        <p:commandLink class="nav-title" value="Start" action="#{projectBean.dorenderaddProject()}">
+                          
+                            </p:commandLink>
+                            </h:form>
+                            <p class="rs nav-description">Visit the Showroom</p>
+                        </div>
+                    </div>
+                </div>
+            
+        </div>
+    </header><!--end: #header -->
+    
+   <!--content -->
+   <ui:insert name="content"></ui:insert>
+    
+    <footer id="footer">
+      <div class="container_12 main-footer">
+            <div class="grid_3 about-us">
+                <h3 class="rs title">About</h3>
+                <p class="rs description">For more information contact us by</p>
+                <p class="rs email"><a class="fc-default  be-fc-orange" href="mailto:projet.lartistou@gmaill.com">projet.lartistou@gmaill.com</a></p>
+                <p class="rs">+1 (555) 555 - 55 - 55</p>
+            </div><!--end: .contact-info -->
+            <div class="grid_3 recent-tweets">
+                <h3 class="rs title">Recent Tweets</h3>
+                <div class="lst-tweets" id="sys_lst_tweets">
+                    
+                </div>
+            </div><!--end: .recent-tweets -->
+            <div class="clear clear-2col"></div>
+            <div class="grid_3 email-newsletter">
+                <h3 class="rs title">Newsletter Signup</h3>
+                <div class="inner">
+                    <p class="rs description">Subscribe to our newsletter NOW for recent updates and discounts.</p>
+                    <form action="#">
+                        <div class="form form-email">
+                            <label class="lbl" for="txt-email">
+                                <input id="txt-email" type="text" class="txt fill-width" placeholder="Enter your e-mail address"/>
+                            </label>
+                            <button class="btn btn-green" type="submit">Submit</button>
+                        </div>
+                    </form>
+                </div>
+            </div><!--end: .email-newsletter -->
+            <div class="grid_3">
+                <h3 class="rs title">Discover &amp; Create</h3>
+                <div class="footer-menu">
+                    <ul class="rs">
+                        <li><a class="be-fc-orange" href="#">What is Lartistou</a></li>
+                        <li><a class="be-fc-orange" href="#">Send Request to be an Artist</a></li>
+                        <li><a class="be-fc-orange" href="#">Galleries Guidlines</a></li>
+                        <li><a class="be-fc-orange" href="#">Press</a></li>
+                        <li><a class="be-fc-orange" href="#">Stats</a></li>
+                    </ul>
+                    <ul class="rs">
+                        <li><a class="be-fc-orange" href="#">Staff Picks</a></li>
+                        <li><a class="be-fc-orange" href="#">Popular</a></li>
+                        <li><a class="be-fc-orange" href="#">Recent</a></li>
+                        <li><a class="be-fc-orange" href="#">Small Projects</a></li>
+                        <li><a class="be-fc-orange" href="#">Most Funded</a></li>
+                    </ul>
+                    <div class="clear"></div>
+                </div>
+            </div>
+            <div class="clear"></div>
+        </div>
+        <div class="copyright">
+            <div class="container_12">
+                <div class="grid_12">
+                    <a class="logo-footer" href="index.html"><img src="../resources/user/images/Capture.PNG" alt="$SITE_NAME"/></a>
+                    <p class="rs term-privacy">
+                        <a class="fw-b be-fc-orange" href="single.html">Terms and Conditions</a>
+                        <span class="sep">/</span>
+                        <a class="fw-b be-fc-orange" href="single.html">Privacy Policy</a>
+                        <span class="sep">/</span>
+                        <a class="fw-b be-fc-orange" href="#">FAQ</a>
+                    </p>
+                    <p class="rs ta-c fc-gray-dark site-copyright">© 2017 ESPRIT Lartistou-Team. All
+				rights reserved.</p>
+                </div>
+                <div class="clear"></div>
+            </div>
+        </div>
+    </footer><!--end: #footer -->
+
+
+
+
+</div>   
+
+</body>
+</html>

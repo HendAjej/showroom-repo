@@ -1,0 +1,61 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
+
+	<ui:define name="title">Complaints Sent</ui:define>
+	<h1>Complaints Sent</h1>
+
+	<h:form>
+		<h:dataTable value="#{sentBean.complaints}" var="p" border="1">
+
+
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="Date" />
+				</f:facet>
+				<h:outputText value="#{p.complaintId.date}" />
+			</h:column>
+
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="Receiver" />
+				</f:facet>
+				<h:outputText value="#{p.receiver.firstName} #{p.receiver.lastName}" />
+			</h:column>
+
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="Subject" />
+				</f:facet>
+				<h:outputText value="#{p.subject}" />
+			</h:column>
+
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="message" />
+				</f:facet>
+				<h:outputText value="#{p.message}" />
+			</h:column>
+
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="action" />
+				</f:facet>
+				<h:commandButton value="select">
+					<f:setPropertyActionListener value="#{p}"
+						target="#{sentBean.complaint}"></f:setPropertyActionListener>
+				</h:commandButton>
+			</h:column>
+
+		</h:dataTable>
+
+		<ui:include src="/gestion.complaint/Detail2.xhtml" />
+
+		<h:panelGrid columns="1">
+			<h:commandLink action="compose" value="Compose new Complaint" />
+			<h:commandLink action="inbox" value="Inbox" />
+		</h:panelGrid>
+
+	</h:form>
+</ui:composition>

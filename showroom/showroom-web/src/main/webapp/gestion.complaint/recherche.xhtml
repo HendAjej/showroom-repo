@@ -1,0 +1,20 @@
+<ui:composition
+	  xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      > 
+      
+       <h:form>
+  
+      <h4><h:outputLabel value="Search:" /></h4>
+      <h:inputText id = "search" value = "#{complaintBean.recherche}" >
+      	<f:ajax event="keyup" listener="#{complaintBean.ajaxEvent()}" />
+      </h:inputText>
+      
+      
+     
+	
+</h:form>
+
+</ui:composition>

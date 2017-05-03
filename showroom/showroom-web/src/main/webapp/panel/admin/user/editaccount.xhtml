@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:jsf="http://xmlns.jcp.org/jsf"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:p="http://primefaces.org/ui" template="/template/template.xhtml">
+
+
+
+	<ui:define name="title">
+		<h:outputText value="Edit account" />
+		<i class="fa fa-info-circle"></i>Profile of : #{userBean.lastName} #{userBean.firstName}
+	</ui:define>
+	
+	<ui:define name="content">
+       
+		<div class="layout-2cols">
+			<div class="content grid_8">
+				<div class="single-page">
+					<div class="wrapper-box box-post-comment">
+							<h2 class="common-title">Edit account</h2>
+						<div class="box-white">
+							<h:form id="contact-form" class="clearfix"
+								enctype="multipart/form-data">
+								
+								<div class="form form-post-comment">
+									<div class="left-input">
+									 <label for="txt_name_contact"> First name
+										<p:inputText id="fn" value="#{userBean.firstName}"
+												class="txt fill-width txt-name"	>																					
+											</p:inputText> <h:message for="fn" style="color:red" /> 
+										</label>
+										 <label for="txt_name_contact"> Last name
+										<p:inputText id="lm" value="#{userBean.lastName}"
+												class="txt fill-width txt-name"	>																					
+											</p:inputText> <h:message for="lm" style="color:red" /> 
+										</label>
+									 <label for="txt_name_contact"> Email
+										<p:inputText id="em" value="#{userBean.email}"
+												class="txt fill-width txt-name"	>																					
+											</p:inputText> <h:message for="em" style="color:red" /> 
+										</label>
+											
+											<label for="txt_name_contact"> address
+										<p:inputText id="asd" value="#{userBean.address}"
+												class="txt fill-width txt-name"	>																					
+											</p:inputText> <h:message for="asd" style="color:red" /> 
+										</label>
+										<label for="txt_name_contact"> Password
+										<p:inputText id="pas" value="#{userBean.password}"
+												class="txt fill-width txt-name"	>																					
+											</p:inputText> <h:message for="pas" style="color:red" /> 
+										</label>
+									<label for="txt_name_contact"> Role
+										<p:inputText id="rl" value="#{userBean.role}"
+												class="txt fill-width txt-name"	>																					
+											</p:inputText> <h:message for="rl" style="color:red" /> 
+										</label>
+								
+									 <label for="txt_name_contact"> phone Number 
+										<p:inputText id="phn" value="#{userBean.phoneNumber}"
+												class="txt fill-width txt-name"	>																					
+											</p:inputText> <h:message for="phn" style="color:red" /> 
+										</label>
+									
+									<label for="txt_name_contact"> banned
+										<p:inputText id="bn" value="#{userBean.banned}"
+												class="txt fill-width txt-name"	>																					
+											</p:inputText> <h:message for="bn" style="color:red" /> 
+										</label>
+				
+				<p class="rs ta-r clearfix"/>
+					<span id="response"></span>
+	 				<div class="col-md-4 col-md-offset-8">
+				                     <h:commandButton action="#{userBean.affichelist}" value="fermer"
+					                 style="width: 45%;margin-right: 5%;" class="btn btn-danger"
+					                 immediate="true" type="submit" />
+			                         <h:commandButton action="#{userBean.editUser()}" value="editer"
+					                 style="width: 45%;" class="btn btn-primary" type="submit"/>
+				                    </div>
+			</div>
+			</div>
+	</h:form>
+  </div>
+    </div>
+</div><!--end: .box-list-comment -->
+ </div>
+</div><!--end: .content -->
+
+        <div class="sidebar grid_4">
+            <div class="box-gray">
+                <p class="rs description pb20">
+               Edit your account</p>
+                       
+            </div>
+<!--             <img src="/edituser.png"/> -->
+            <h:graphicImage alt="logo" library="img" name="edituser.png" />
+        </div><!--end: .sidebar -->
+        <div class="clear"></div>
+	<!--end: .content -->
+       			
+	</ui:define>
+</ui:composition>

@@ -41,9 +41,6 @@ public class Complaint implements Serializable {
 		this.complainer = complainer;
 		this.receiver = receiver;
 	}
-	
-	
-
 
 	public Complaint(String subject, User complainer, User receiver) {
 		super();

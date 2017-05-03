@@ -28,7 +28,15 @@ public class Artwork implements Serializable {
 	
 	@OneToMany(mappedBy="artwork")
 	private List<Auction> auctions;
+	
+	@ManyToOne
+	private Gallery galleryart;
+	
+	@ManyToMany
+	private List<Discount> discounts;
 
+	@ManyToOne
+	private User user;
 	
 	public Artwork() {
 		super();
@@ -74,5 +82,21 @@ public class Artwork implements Serializable {
 	public void setDisponibility(Boolean disponibility) {
 		this.disponibility = disponibility;
 	}
+	public Gallery getGalleryart() {
+		return galleryart;
+	}
+	public void setGalleryart(Gallery galleryart) {
+		this.galleryart = galleryart;
+	}
+	
+	@ManyToMany(mappedBy="artworks")
+	public List<Discount> getDiscounts() {
+		return discounts;
+	}
+	public void setDiscounts(List<Discount> discounts) {
+		this.discounts = discounts;
+	}
+	
+	
    
 }

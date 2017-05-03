@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:jsf="http://xmlns.jcp.org/jsf"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:p="http://primefaces.org/ui">
+<ui:composition template="/template/template_login.xhtml">
+	<ui:define name="content">
+
+	<div style="text-align: center;">
+                    <h:graphicImage alt="logo" library="img" name="Capture.PNG" />
+	</div>
+
+		<h1 style="text-align: center; font-weight: bold;">Lartistou</h1>
+		<h:messages id="err" class="alert alert-danger alert-dismissible"
+			style="list-style-type: none;" />
+	<div style="text-align: center;">
+			<h2>SIGN IN</h2></div>
+						<h:form id="form_login">
+						<!-- <div class="form-group">
+						<label for="txt_name_contact"> Choose profile picture
+											
+								 <p:fileUpload class="form-control" value="#{userBean.file}" mode="simple" skinSimple="true"/>
+								</label>
+					    </div> -->
+							<div class="form-group">
+							 <h:outputLabel value="First Name :" />
+				              <h:inputText id="firstName" class="form-control"
+									value="#{userBean.firstName}" required="true"
+									requiredMessage="Please enter your firstName"
+									validator="#{registrationValidator.firstnameValidation}"
+									placeholder="enter your first Name">
+								</h:inputText> 
+								</div>
+								<h:message id="fNameThread" for="firstName" styleClass="error" />
+							<div class="form-group">
+					                  <h:outputLabel value="Last Name :" />
+				                      <h:inputText id="lastname" class="form-control"
+									value="#{userBean.lastName}" required="true"
+									requiredMessage="Please enter your lastName"
+									validator="#{registrationValidator.lastnameValidation}"
+									placeholder="enter your last Name">
+								</h:inputText>
+						   </div>
+								<h:message id="lNameThread" for="lastname" styleClass="error" />
+							<div class="form-group">
+					              <h:outputLabel value="Email :" />
+				                  <h:inputText id="mail" class="form-control"
+									value="#{userBean.email}"
+									validator="#{registrationValidator.mailValidation}"
+									required="true" requiredMessage="Please enter your Email"
+									placeholder="enter your email">
+								</h:inputText> 
+								</div>
+								<h:message id="mailThread" for="mail" styleClass="error" />
+							<div class="form-group">
+					            <h:outputLabel value="Password :" />
+								<h:inputSecret id="Password" class="form-control"
+									value="#{userBean.password}"
+									validator="#{registrationValidator.passwordValidation}"
+									placeholder="enter your password">
+									<f:attribute name="confirm"
+										value="#{confirmPassword.submittedValue}" />
+								</h:inputSecret>  
+								 </div>		
+								<h:message id="m_password" for="Password" styleClass="error" />
+							<div class="form-group">
+					            <h:outputLabel value="Reenter your password :" />
+				                <h:inputSecret  class="form-control" binding="#{confirmPassword}" id="rePassword"
+				               placeholder="renter your password">
+								</h:inputSecret>
+							</div>
+								<h:message id="passwodThread" for="rePassword"
+									styleClass="error" />
+							<div class="form-group">
+					                <h:outputLabel value="Address :" />
+				                    <h:inputText id="ad1" class="form-control"
+									value="#{userBean.address}" required="true"
+									requiredMessage="Please enter your address"
+									placeholder="enter your address">
+								</h:inputText>				                   
+								 </div>								
+								
+							<div class="form-group">
+					            <h:outputLabel value="Telephone :" />
+								<h:inputText id="phn1" class="form-control"
+									value="#{userBean.phoneNumber}" required="true"
+									requiredMessage="Please enter your phoneNumber"
+									placeholder="enter your telephone number">
+								</h:inputText>  
+						   </div>		
+							<div class="form-group">
+					          <h:outputLabel value="Position Request:" />
+							<h:inputText id="rle1" class="form-control"
+									value="#{userBean.role}" required="true"
+									requiredMessage="Please enter your role request"
+									placeholder="enter your role request">
+								</h:inputText>
+							</div>	
+						<div style="text-align: center;">			
+							<h:commandButton id="signUp" style="width: 100%;" class="btn btn-primary" action="#{userBean.doInscription()}"
+								value="SIGN IN" /> 
+							</div>
+						</h:form>
+					</ui:define>
+</ui:composition>
+</html>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:jsf="http://xmlns.jcp.org/jsf"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="/template/template.xhtml">
+	<!-- # Message -->
+	<ui:define name="message">
+		<div>
+			<h:messages id="msg"
+				style="list-style-type: none;margin-left: 0px;padding: 0px;"
+				errorClass="alert alert-danger alert-dismissible"
+				infoClass="alert alert-success alert-dismissible" />
+		</div>
+	</ui:define>
+
+	<!-- # Titre -->
+	<ui:define name="title">
+		<i class="fa fa-pencil"></i> Edit Discount</ui:define>
+
+	<!-- # Contenu -->
+	<ui:define name="content">
+		<div class="panel-body" style="width: 70%;">
+			<div class="form_group">
+				<label for="_add_discountvalue">Discount value</label>
+				<h:inputText value="#{discountBean.discountvalue}"
+					id="_add_discountvalue" class="form-control" required="true" />
+			</div>
+
+			<div class="form_group">
+				<label for="_add_startdate">Start Date</label>
+				<h:inputText value="#{discountBean.start_date}" id="_add_startdate"
+					class="form-control" required="true" pt:type="date">
+					<f:convertDateTime pattern="yyyy-MM-dd" />
+				</h:inputText>
+			</div>
+
+			<div class="form_group">
+				<label for="_end_startdate">End Date</label>
+				<h:inputText value="#{discountBean.end_date}" id="_end_startdate"
+					class="form-control" required="true" pt:type="date">
+					<f:convertDateTime pattern="yyyy-MM-dd" />
+				</h:inputText>
+			</div>
+		</div>
+	</ui:define>
+
+	<!-- # Bouttons -->
+	<ui:define name="buttons">
+		<div class="row">
+			<div class="col-md-4 col-md-offset-8">
+				<h:commandLink action="#{discountBean.showList}" value="Close"
+					style="width: 45%;margin-right: 5%;" class="btn btn-danger"
+					immediate="true" />
+				<h:commandButton action="#{discountBean.editDiscount}" value="Edit"
+					style="width: 45%;" class="btn btn-primary" type="submit">
+					<f:ajax execute="form_list" render="form_list msg"></f:ajax>
+				</h:commandButton>
+			</div>
+		</div>
+	</ui:define>
+
+</ui:composition>
+</html>

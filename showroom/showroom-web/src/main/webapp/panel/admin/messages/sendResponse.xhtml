@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:jsf="http://xmlns.jcp.org/jsf"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:p="http://primefaces.org/ui" template="/template/template.xhtml">
+	
+	
+	<ui:define name="title">
+		<h:outputText value="Send Response" />
+	</ui:define>
+	<ui:define name="content">
+<div class="layout-2cols">
+			<div class="content grid_8">
+				<div class="single-page">
+					<div class="wrapper-box box-post-comment">							
+						<div class="box-white">
+                              <h:form id="contact-form" class="clearfix"
+								enctype="multipart/form-data">
+								
+								<div class="form form-post-comment">
+									<div class="left-input">
+										 <label for="txt_name_contact">From :  
+										<p:inputText id="name_sender" value="#{MessageBean.message.name_sender}" pt:placeholder="enter your message here"
+												class="txt fill-width txt-name"	>																			
+											<f:validator validatorId="crowdproject.notempty" />
+											</p:inputText> <h:message for="name_sender" style="color:red" />
+										</label>
+										
+										 <label for="txt_content_contact"> Object : 
+											<p:inputText  id="object"
+												value="#{MessageBean.message.object_message}" pt:placeholder="enter your message here" 
+												class="txt fill-width">												
+											<f:validator validatorId="crowdproject.notempty" />
+											</p:inputText> <h:message for="object" style="color:red" />
+										</label>				
+										<label for="txt_content_contact"> Text : 
+											<p:inputTextarea rows="6" cols="33" id="text"
+												value="#{MessageBean.message.text_message}" pt:placeholder="enter your message here" 
+												class="txt fill-width">																					
+											<f:validator validatorId="crowdproject.notempty" />
+											</p:inputTextarea> <h:message for="text" style="color:red" />
+										</label>
+											 
+																		 										
+									</div>
+                                   
+									<div class="clear"></div>
+									<p class="rs ta-r clearfix">
+										<span id="response"></span>
+										<p:commandButton action="#{MessageBean.sendResponse()}"
+									value="Send" class="btn btn-white btn-submit-comment" icon="ui-icon-check" />
+									</p>
+								</div>
+							</h:form>
+				                </div>
+						                </div>
+                </div><!--end: .box-list-comment -->
+            </div>
+        </div><!--end: .content -->
+ <div class="clear"></div>
+    
+			
+
+</ui:define>
+</ui:composition>
+
